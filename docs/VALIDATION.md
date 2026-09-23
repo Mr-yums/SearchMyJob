@@ -1,31 +1,38 @@
-# Vérifications de l’édition 0.1.0
+# Validation de la distribution publique
 
-180 tests réussis à l’intérieur du conteneur Docker sur Linux amd64, le 18 septembre 2026.
-Le conteneur utilise Python 3.14 et Node 24, un utilisateur non-root et les scripts MCP embarqués.
+Le 23 septembre 2026, la version 0.3.8 a passé 204 tests Python, les contrôles
+Ruff, l’architecture UI, Prettier et le build Vite. GitHub Actions a également
+construit Docker, vérifié une installation vide et exécuté les parcours navigateur.
+[Exécution de référence](https://github.com/Mr-yums/SearchMyJob/actions/runs/35917195656).
 
-Les API IA sont testées par simulation HTTP pour les quatre fournisseurs : authentification,
-appel d’outil, aller-retour outil/réponse finale, suivi des tokens et erreurs sans exposition
-de la clé. Un test d’intégration traverse le chat, l’adaptateur IA et l’enregistrement d’un
-brouillon, sans envoi. L’activation est refusée avant validation du fournisseur.
+Les parcours navigateur couvrent français/anglais, activation, erreurs de fournisseur,
+brouillons, changements rapides de vues, listes de 100 documents/courriers et mobile.
+Les réponses des fournisseurs sont simulées : aucun appel payant ou e-mail réel.
+Deux avertissements de dépréciation des bibliothèques de test restent connus.
 
-Chromium : clé refusée, liste des modèles, validation, clé effacée du formulaire après
-succès, état conservé après rechargement, changement de fournisseur, sources séparées,
-activation, conversation et persistance. Mise en page testée à 1440 et 390 pixels.
+Le démarrage vérifie version, données vides, veille désactivée et filtrage Host.
+Le conteneur utilise un utilisateur non-root et conserve ses données dans un volume
+privé. Pytest et Ruff sont exclus de l’image d’exécution.
 
-Ces essais utilisent des réponses simulées, **pas les comptes réels des fournisseurs**.
-La connexion facturée doit être testée par chaque installateur avec sa propre clé.
-Aucun message, candidature ni e-mail externe n’a été envoyé pendant la préparation.
+Les audits npm UI/MCP et pip-audit du 23 septembre ne signalaient aucune vulnérabilité
+connue. Le contrôle des sources n’a détecté aucun secret connu ; quatre alertes
+heuristiques ont été examinées et correspondent à des valeurs fictives de tests.
+Ces contrôles ne constituent pas une garantie de sécurité exhaustive.
 
-Dépendances JavaScript : SDK MCP fixé à 1.27.1, y compris la dépendance transitive de
-Bright Data. `npm audit` sans vulnérabilité signalée lors de la préparation, côté UI et MCP.
-Ce résultat est daté et ne remplace pas les mises à jour ultérieures.
+## Reproduire les contrôles
 
-Pour reproduire le test navigateur, dans un environnement de test sans données personnelles :
-installer Playwright hors du runtime, compiler l’UI, lancer `tests/serve_fixture.py` avec
-`SEARCHMYJOB_STATE` pointant vers un **nouveau dossier temporaire**, `SEARCHMYJOB_PORT=8965`,
-puis exécuter `scripts/check-ui.mjs`. Ce serveur remplace uniquement les fournisseurs par
-simulation et ne doit jamais être utilisé pour une instance personnelle.
+Le workflow `.github/workflows/quality.yml` contient les commandes exécutées sur
+chaque changement. Installer `requirements-dev.txt`, les dépendances UI/MCP et
+Chromium avec Playwright. Les scripts `tests/e2e/check-i18n.mjs`,
+`tests/e2e/check-motion.mjs` et `tests/e2e/check-record-list.mjs` acceptent
+`SEARCHMYJOB_TEST_URL` et simulent les routes API.
 
-Instance Docker de validation : démarrage vide, aucun compte IA hérité, refus d’un Host ou
-d’une Origin étrangère. Après recréation du conteneur, profil et identifiants de test
-conservés, veille désactivée et compteur Bright Data toujours à zéro.
+Le parcours historique `tests/e2e/check-ui.mjs` utilise le serveur
+`tests/support/serve_fixture.py`, avec `SEARCHMYJOB_STATE` dirigé vers un nouveau
+dossier temporaire et `SEARCHMYJOB_PORT` dédié. Ne jamais le lancer avec les données
+d’une installation personnelle.
+
+La version 0.3.9 nettoie la distribution : documentation fusionnée et chemins
+corrigés, retrait de deux adaptateurs MCP natifs inutilisés dans cette édition,
+et rejet des noms de fichiers ambigus entre Linux et Windows lors du packaging.
+Les résultats de chaque version sont consultables dans GitHub Actions.

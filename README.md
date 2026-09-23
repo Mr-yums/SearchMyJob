@@ -1,6 +1,6 @@
 # SearchMyJob · édition Docker
 
-**Version 0.3.8 · Installation personnelle · Français / English**
+**Version 0.3.9 · Installation personnelle · Français / English**
 
 ![Premier lancement de SearchMyJob](docs/onboarding.png)
 

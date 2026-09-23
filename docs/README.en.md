@@ -67,7 +67,7 @@ backups, restoration and optional Gmail setup.
 
 ## Public release
 
-Version 0.3.8. Designed and directed by Mr.yums with AI-assisted development.
+Version 0.3.9. Designed and directed by Mr.yums with AI-assisted development.
 This distribution is separate from the author’s personal workspace. Automated tests
 use simulated external services; real paid AI/search calls and Gmail have not been
 validated for this edition. No general open-source reuse license is granted.

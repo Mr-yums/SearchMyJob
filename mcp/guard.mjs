@@ -1,5 +1,5 @@
 // [Sol] Guard every HTTP request in the pinned Bright Data MCP, including startup.
-// Catalogue complet : allowlist HTTP ; le navigateur est gardé dans browser-guard.mjs.
+// Garde HTTP et compteur partagé des connecteurs de recherche et de lecture.
 // contrôle d'URL conservé, comptage restreint aux appels facturants (le polling snapshot ne compte pas).
 import axios from './node_modules/axios/index.js';
 import {DatabaseSync} from 'node:sqlite';

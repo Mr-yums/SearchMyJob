@@ -2,7 +2,7 @@ name: searchmyjob-community
 services:
   app:
     build: .
-    image: searchmyjob-community:0.3.8
+    image: searchmyjob-community:0.3.9
     environment:
       SEARCHMYJOB_STATE: /state
       SEARCHMYJOB_PUBLIC_PORT: ${SEARCHMYJOB_PORT:-8936}

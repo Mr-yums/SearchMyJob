@@ -251,38 +251,6 @@ def test_legacy_fifty_call_schema_is_migrated_keeping_the_counter(tmp_path, monk
     assert bright_budget.status()["used"] == 45
 
 
-def test_full_browser_guard_counts_actions_refuses_private_and_closes(budget):
-    code = """import assert from 'node:assert/strict';
-process.env.SEARCHMYJOB_BRIGHT_BUDGET=BUDGET;
-const {installBrowserGuard}=await import('./mcp/browser-guard.mjs');
-let executed=0,closed=0,route;
-const browser={close:async()=>{closed++}};
-const page={route:async(pattern,fn)=>{route=fn}};
-class Session{async get_browser(){return browser} async get_page(){return page}}
-const tools=[{name:'scraping_browser_navigate',execute:async()=>{executed++;return 'ok'}}];
-const cleanup=installBrowserGuard(tools,Session,{ttl:20});
-await assert.rejects(tools[0].execute({url:'https://127.0.0.1/'}));
-assert.equal(executed,0);
-await tools[0].execute({url:'https://example.org/'});
-assert.equal(executed,1);
-const session=new Session();await session.get_browser();await session.get_page();
-let aborted=false;
-await route({request:()=>({isNavigationRequest:()=>true,url:()=> 'http://localhost/'}),abort:()=>{aborted=true},continue:()=>{throw Error('private navigation allowed')}});
-assert.ok(aborted);
-await new Promise(r=>setTimeout(r,40));assert.equal(closed,1);
-const {DatabaseSync}=await import('node:sqlite');
-const db=new DatabaseSync(process.env.SEARCHMYJOB_BRIGHT_BUDGET);db.exec('UPDATE budget SET used=max_calls');db.close();
-await assert.rejects(tools[0].execute({url:'https://example.org/'}));
-assert.equal(executed,1);await cleanup();
-""".replace("=BUDGET;", "=" + json.dumps(str(budget)) + ";")
-    result = node(code)
-    assert result.returncode == 0, result.stderr
-    with sqlite3.connect(budget) as db:
-        assert db.execute("SELECT operation FROM calls").fetchall() == [
-            ("scraping_browser_navigate",)
-        ]
-
-
 def test_full_catalog_browser_credentials_and_discover_polling(budget):
     code = """import assert from 'node:assert/strict';
 import axios from './mcp/node_modules/axios/index.js';

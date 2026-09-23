@@ -39,10 +39,16 @@ for folder, patterns in {
 for folder in ("ui/src", "ui/public"):
     files.update(p for p in (ROOT / folder).rglob("*") if p.is_file())
 files = {p for p in files if not p.is_relative_to(ROOT / "tests/manual")}
+names = {}
 for p in files:
+    relative = str(p.relative_to(ROOT))
+    key = relative.casefold()
+    if key in names:
+        raise SystemExit("Noms ambigus entre systèmes : " + names[key] + " / " + relative)
+    names[key] = relative
     if p.is_symlink() or p.suffix in (".sqlite", ".sqlite3", ".db", ".env"):
         raise SystemExit("Fichier interdit dans la distribution : " + str(p.relative_to(ROOT)))
-archive = OUTPUT / "searchmyjob-docker-0.3.8.zip"
+archive = OUTPUT / "searchmyjob-docker-0.3.9.zip"
 temporary = archive.with_suffix(".zip.tmp")
 with zipfile.ZipFile(temporary, "w", zipfile.ZIP_DEFLATED) as z:
     for p in sorted(files):

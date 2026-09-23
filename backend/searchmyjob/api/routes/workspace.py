@@ -78,4 +78,4 @@ async def config_history(*, E: WorkspaceContext = Depends(get_engine)):
 
 @router.get("/api/health")
 async def health(*, E: WorkspaceContext = Depends(get_engine)):
-    return {"status": "ok", "service": "SearchMyJob", "version": "0.3.8"}
+    return {"status": "ok", "service": "SearchMyJob", "version": "0.3.9"}

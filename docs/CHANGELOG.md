@@ -1,5 +1,13 @@
 # Versions
 
+## 0.3.9 — 23 septembre 2026
+
+- Un seul guide d’architecture, sans collision de casse sous Windows.
+- Chemins et bilan de validation actualisés.
+- Deux adaptateurs MCP d’agents natifs inutilisés retirés de cette édition,
+  avec le test spécifique de leur navigateur (203 tests conservés).
+- Le packaging refuse les noms de fichiers qui ne diffèrent que par la casse.
+
 ## 0.3.8 — 23 septembre 2026
 
 Première distribution publique sur GitHub, issue de l’édition Docker 0.3.7.

@@ -5,9 +5,9 @@ initial et dans l’en-tête. La préférence `smj-language` reste dans le navig
 à défaut, un navigateur anglophone utilise l’anglais, les autres le français.
 Changer de langue ne recharge pas l’application et ne modifie pas les données.
 
-- `ui/src/i18n.js` : état réactif partagé, traduction des libellés, formats régionaux.
-- `ui/src/locales/en.json` : textes anglais, indexés par les libellés français.
-- `ui/src/components/LanguageSwitcher.vue` : sélecteur accessible.
+- `ui/src/shared/i18n/index.js` : état réactif partagé, traduction des libellés, formats régionaux.
+- `ui/src/shared/i18n/locales/en.json` : textes anglais, indexés par les libellés français.
+- `ui/src/shared/components/LanguageSwitcher.vue` : sélecteur accessible.
 - `ui/public/guide.html` et `guide-en.html` : guides dans les deux langues.
 
 Les appels `tr()` doivent porter sur les textes de l’application, pas sur les CV,
