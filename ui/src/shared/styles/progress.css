@@ -1,0 +1,46 @@
+/* [Sol] Compact elapsed timer; existing reduced-motion preference disables the spinner. */
+.thinking.task-progress {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.task-progress .phase-spinner {
+  display: block;
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: smj-phase-spin 1.1s linear infinite;
+}
+.task-progress .phase-label {
+  min-width: 0;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+.task-progress .phase-timer {
+  flex-shrink: 0;
+  margin-left: 3px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+  color: var(--accent);
+  font:
+    500 11px/1.4 ui-monospace,
+    monospace;
+  font-variant-numeric: tabular-nums;
+}
+@keyframes smj-phase-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

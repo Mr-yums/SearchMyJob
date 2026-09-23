@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@brightdata/mcp": "2.11.2",
+    "@modelcontextprotocol/sdk": "1.27.1"
+  },
+  "overrides": {
+    "@modelcontextprotocol/sdk": "1.27.1"
+  }
+}

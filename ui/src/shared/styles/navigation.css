@@ -1,0 +1,15 @@
+/* [OXIO 15/09/2026] Barre latérale masquée hors conversation ; bouton de rappel dans l’en-tête. */
+.layout.sidebar-hidden {
+  grid-template-columns: minmax(0, 1fr);
+}
+.sidebar-hidden .app-sidebar {
+  display: none;
+}
+.sidebar-reveal {
+  margin-right: 4px;
+  color: var(--accent-muted);
+}
+.sidebar-reveal:hover {
+  color: var(--accent);
+  background: var(--surface-2);
+}

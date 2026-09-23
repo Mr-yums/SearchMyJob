@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+pythonpath = ["backend", "tests"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+extend-exclude = ["docs/history", "ui", "mcp", "dist"]
+
+[tool.ruff.lint]
+select = ["F", "I"]

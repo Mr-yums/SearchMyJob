@@ -1,0 +1,39 @@
+name: Quality
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pip install -r requirements-dev.txt
+      - run: npm ci --prefix mcp
+      - run: npm ci --prefix ui
+      - run: npm run build --prefix ui
+      - run: ruff check backend tests scripts
+      - run: ruff format --check backend tests scripts
+      - run: python -m pytest
+      - run: npm run check:architecture --prefix ui
+      - run: npm run format:check --prefix ui
+      - run: python scripts/package.py
+      - name: Build and start an isolated installation
+        run: SEARCHMYJOB_PORT=18936 SEARCHMYJOB_OAUTH_PORT=18976 docker compose -p searchmyjob-ci up -d --build
+      - run: python scripts/check-install.py http://127.0.0.1:18936
+      - run: cd ui && npx playwright install --with-deps chromium
+      - name: Browser checks with simulated APIs
+        env:
+          SEARCHMYJOB_TEST_URL: http://127.0.0.1:18936
+        run: |
+          node tests/e2e/check-i18n.mjs
+          node tests/e2e/check-motion.mjs
+          node tests/e2e/check-record-list.mjs
+      - name: Remove the isolated test installation
+        if: always()
+        run: docker compose -p searchmyjob-ci down -v

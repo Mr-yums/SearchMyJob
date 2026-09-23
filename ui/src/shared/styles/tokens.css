@@ -1,0 +1,113 @@
+/* [Sol] SearchMyJob violet workspace: full-height conversation and retractable panels. */
+/* [OXIO 15/09/2026] Thème "voiles de blanc" : toutes les couleurs passent par ces tokens. Aucun blanc pur en fond ; le violet est adouci. */
+:root {
+  --bg: #ece9f2;
+  --bg-shell: #f3f1f7;
+  --surface: #f9f8fb;
+  --surface-2: #f3f1f7;
+  --surface-3: #eae6f1;
+  --accent: #6b52c2;
+  --accent-strong: #5a42aa;
+  --accent-2: #7d65c8;
+  --accent-light: #b3a2e0;
+  --accent-soft: #e3dcf3;
+  --accent-tint: #efeaf7;
+  --accent-text: #5a409e;
+  --accent-muted: #7b66ad;
+  --on-accent: #fff;
+  --ink: #2a2338;
+  --ink-2: #4b4260;
+  --muted: #6e657f;
+  --faint: #8f879f;
+  --line: #e0daea;
+  --line-soft: #e9e4f0;
+  --line-strong: #cbc2db;
+  --dark: #2a2238;
+  --dark-2: #3b3050;
+  --warn-bg: #faeee6;
+  --warn-line: #eed4c4;
+  --warn-text: #a05a34;
+  --danger-bg: #faeef2;
+  --danger-text: #b0506a;
+  --overlay: rgba(31, 20, 48, 0.34);
+  --header-veil: rgba(243, 241, 247, 0.86);
+  --shadow-rgb: 46, 30, 72;
+  --green: var(--accent);
+  --lime: var(--accent-soft);
+  --paper: var(--surface);
+  --radius: 12px;
+}
+/* [OXIO 15/09/2026] Thèmes : surcharge des tokens seulement. "searchmyjob" = fond violet, le blanc adoucit ; "sombre" = nuit + violet. */
+:root[data-theme='searchmyjob'] {
+  color-scheme: dark;
+  --bg: #2a1f4d;
+  --bg-shell: #241a44;
+  --surface: #382b64;
+  --surface-2: #423577;
+  --surface-3: #4e4189;
+  --accent: #a48bff;
+  --accent-strong: #b8a6ff;
+  --accent-2: #9a7ff7;
+  --on-accent: #1c1240;
+  --accent-light: #6c55c2;
+  --accent-soft: #4f3f92;
+  --accent-tint: #42347c;
+  --accent-text: #dcd1ff;
+  --accent-muted: #bfb0f0;
+  --ink: #f6f2ff;
+  --ink-2: #e1d9f8;
+  --muted: #c3b8e6;
+  --faint: #9a8dc9;
+  --line: #4b3d84;
+  --line-soft: #3f3274;
+  --line-strong: #6656a6;
+  --dark: #150d2e;
+  --dark-2: #1f1542;
+  --warn-bg: #4a2f2a;
+  --warn-line: #6b4238;
+  --warn-text: #ffb693;
+  --danger-bg: #4c2638;
+  --danger-text: #ffa5ba;
+  --overlay: rgba(10, 5, 25, 0.62);
+  --header-veil: rgba(36, 26, 68, 0.88);
+  --shadow-rgb: 8, 2, 28;
+}
+:root[data-theme='sombre'] {
+  color-scheme: dark;
+  --bg: #0f0d17;
+  --bg-shell: #14111f;
+  --surface: #1b1727;
+  --surface-2: #221d31;
+  --surface-3: #2b2540;
+  --accent: #9d85f8;
+  --accent-strong: #b3a0ff;
+  --accent-2: #8e74ef;
+  --on-accent: #140f26;
+  --accent-light: #5d4aa8;
+  --accent-soft: #3a2e66;
+  --accent-tint: #2b2350;
+  --accent-text: #c8b8ff;
+  --accent-muted: #a696e0;
+  --ink: #ece8f7;
+  --ink-2: #d2cbe6;
+  --muted: #a79fc0;
+  --faint: #7d7599;
+  --line: #2f2944;
+  --line-soft: #262038;
+  --line-strong: #4a4166;
+  --dark: #08060f;
+  --dark-2: #15111f;
+  --warn-bg: #3a2620;
+  --warn-line: #5a3a2c;
+  --warn-text: #ffb38f;
+  --danger-bg: #3b1f2a;
+  --danger-text: #ff9fb6;
+  --overlay: rgba(0, 0, 0, 0.62);
+  --header-veil: rgba(20, 17, 31, 0.88);
+  --shadow-rgb: 0, 0, 0;
+}
+:root[data-theme] {
+  transition:
+    background 0.25s,
+    color 0.25s;
+}

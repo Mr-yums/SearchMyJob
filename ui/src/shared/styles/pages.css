@@ -1,0 +1,115 @@
+/* Center each page within its pane, independently of the sidebar or screen width. */
+:root {
+  --workspace-page-width: 1100px;
+  --reading-width: 76ch;
+}
+.pane-content {
+  container-type: inline-size;
+}
+.pane-content > section {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+}
+.pane-content > section:not(.conversation-view) {
+  max-width: var(--workspace-page-width);
+  margin-block: 0;
+  margin-inline: auto;
+}
+html[data-page-width='full'] .pane-content > section:not(.conversation-view) {
+  max-width: none;
+}
+html[data-agent-width='normal'] .pane-content > .conversation-view {
+  max-width: var(--workspace-page-width);
+}
+.connection-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.documents-layout {
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  align-items: start;
+}
+.documents-layout > * {
+  min-width: 0;
+}
+.document-editor,
+.profile-editor {
+  display: block;
+  width: 100%;
+  max-width: var(--reading-width);
+  margin-inline: auto;
+  font-size: 15px;
+  line-height: 1.75;
+  min-height: clamp(360px, 58dvh, 740px);
+  resize: vertical;
+}
+.profile-section-content,
+.offer-dialog > .pre {
+  max-width: var(--reading-width);
+  overflow-wrap: anywhere;
+}
+.offer-dialog > .pre {
+  margin-inline: auto;
+  line-height: 1.75;
+}
+@container (max-width: 800px) {
+  .documents-layout,
+  .profile-reader {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .reader-index {
+    position: static;
+  }
+  .mail-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.imported-documents {
+  margin-bottom: 20px;
+}
+.imported-documents a {
+  display: block;
+  font-size: 12px;
+  padding: 10px 0;
+  overflow-wrap: anywhere;
+}
+
+.platform-choices {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+.platform-choices legend {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 0 6px;
+}
+
+/* Readers can use the whole pane without changing the page-width preference. */
+html .pane-content > section.reader-expanded {
+  max-width: none;
+}
+.reader-expanded .documents-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.reader-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.reader-heading h2 {
+  margin: 0;
+}
+.reader-expanded .document-editor {
+  min-height: clamp(360px, 62dvh, 900px);
+}
+.reader-expanded .mail-fields,
+.reader-expanded .document-editor {
+  width: 100%;
+  max-width: 100ch;
+  margin-inline: auto;
+}

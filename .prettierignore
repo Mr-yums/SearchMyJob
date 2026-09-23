@@ -1,0 +1,4 @@
+**/node_modules
+**/dist
+docs/history
+**/package-lock.json

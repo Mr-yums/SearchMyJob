@@ -1,0 +1,14 @@
+**
+!requirements.lock.txt
+!backend/
+!backend/**
+!ui/
+!ui/**
+!mcp/
+!mcp/**
+ui/node_modules
+ui/dist
+mcp/node_modules
+**/__pycache__
+**/.env*
+**/*.sqlite*

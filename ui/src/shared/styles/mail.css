@@ -1,0 +1,54 @@
+/* [OXIO 15/09/2026] Courrier : onboarding Gmail, brouillons et éditeur d’e-mail. */
+.steps {
+  margin: 12px 0 14px;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.steps strong {
+  color: var(--ink-2);
+}
+.steps code {
+  font-size: 11px;
+  background: var(--surface-3);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.mail-connection {
+  margin-bottom: 22px;
+}
+.mail-connection .alert {
+  margin: 8px 0 12px;
+}
+.mail-prefs {
+  margin: 14px 0 6px;
+  max-width: 360px;
+}
+.mail-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0 4px;
+}
+.mail-editor {
+  min-height: 340px;
+  margin-top: 12px;
+}
+.warning-text {
+  color: var(--warn-text);
+}
+.tag.sent {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: var(--accent-light);
+}
+.document.selected {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 2px var(--accent-tint);
+}
+@media (max-width: 700px) {
+  .mail-fields {
+    grid-template-columns: 1fr;
+  }
+}

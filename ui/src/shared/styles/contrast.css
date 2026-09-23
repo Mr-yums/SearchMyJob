@@ -1,0 +1,82 @@
+/* [Sol] Data contrast: violet accents, readable text and useful secondary labels. */
+.context-header h2,
+.task-list h3 {
+  color: var(--accent-text);
+}
+.agent-widget strong,
+.task-metrics strong {
+  color: var(--accent);
+}
+.agent-widget span {
+  color: var(--accent);
+}
+.profile-shortcut {
+  color: var(--accent);
+}
+.task-row strong {
+  color: var(--accent);
+  font-size: 11px;
+}
+.task-row small {
+  color: var(--accent-muted);
+  font-size: 9px;
+}
+.task-row em {
+  color: var(--accent);
+  font-size: 9px;
+}
+.task-metrics span {
+  color: var(--accent);
+  font-size: 10px;
+}
+.task-list .text-button,
+.watch-shortcut {
+  color: var(--accent);
+}
+.profile-section-title h3 {
+  color: var(--accent);
+}
+.reader-index label {
+  color: var(--accent);
+}
+.quick-actions button {
+  color: var(--accent);
+}
+.composer textarea::placeholder {
+  color: var(--accent-muted);
+}
+.composer select {
+  color: var(--accent);
+}
+.page-heading p {
+  color: var(--accent);
+}
+.criteria label {
+  color: var(--accent);
+}
+.criteria input,
+.criteria select,
+.criteria textarea {
+  color: var(--accent);
+}
+.connection-grid h3,
+.connection-form h3,
+.card h3 {
+  color: var(--accent);
+}
+.connection-form p,
+.connection-grid .small {
+  color: var(--accent);
+}
+.profile-banner h2 {
+  color: var(--accent);
+}
+.schedule-note p {
+  color: var(--accent);
+}
+.run summary {
+  color: var(--accent);
+}
+.task-toggle.selected {
+  color: var(--accent);
+}

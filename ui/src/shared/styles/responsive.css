@@ -1,0 +1,32 @@
+/* [Sol] Readability and mobile navigation keep real hit targets and never squeeze labels. */
+nav button {
+  flex-shrink: 0;
+}
+.message-body {
+  font-size: 13px;
+}
+.quick-actions button {
+  font-size: 10px;
+}
+.profile-banner h2 {
+  text-transform: none;
+  font-size: 14px;
+}
+.offer-dialog::backdrop {
+  background: var(--overlay);
+  backdrop-filter: blur(2px);
+}
+@media (max-width: 720px) {
+  nav button {
+    flex: 0 0 auto;
+  }
+  .message-body {
+    font-size: 13px;
+  }
+  .quick-actions button {
+    font-size: 9px;
+  }
+  .profile-banner h2 {
+    font-size: 12px;
+  }
+}
